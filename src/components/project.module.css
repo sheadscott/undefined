@@ -1,0 +1,21 @@
+section {
+    margin: 1rem auto 0;
+    max-width: 70%;
+    display: flex;
+}
+
+.text {
+    flex: 1;
+}
+
+img {
+    align-self: center;
+    flex: 1;
+    margin-bottom: 0;
+    max-width: 400px;
+}
+
+.hrule {
+    border-bottom: 1px solid #666;
+    margin-left: 20%;
+}
