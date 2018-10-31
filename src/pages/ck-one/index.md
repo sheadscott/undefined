@@ -1,8 +1,8 @@
 ---
-title: "Sony"
+title: "CK One Shockkkkkkkkkkkk"
 tagline: "Tiny tagline or explainer text, at least one sentence but a long one."
-img: "sony.png"
-order: 3
+img: "./ck-one.png"
+order: 2
 ---
 
 This is some really cool copy about a really cool project.

@@ -22,7 +22,6 @@ export default ({ children }) => (
     }
     `}
     render={data => {
-      console.log('data', data);
       return (
         <div>
           <header>
