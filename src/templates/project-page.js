@@ -1,34 +1,32 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import Img from "gatsby-image"
+import React from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
-export default ({ data }) => {
-  const page = data.markdownRemark
+export default props => {
+  const page = props.data.markdownRemark;
+  console.log('page', page);
   return (
-    <Layout>
-      <div>
-        <h1>{page.frontmatter.title}</h1>
-        <Img fixed={data.image.childImageSharp.fixed} />
-        <div dangerouslySetInnerHTML={{ __html: page.html }} />
-      </div>
-    </Layout>
-  )
-}
+    <div>
+      <h1>{page.frontmatter.title}</h1>
+      <Img fixed={page.frontmatter.img.childImageSharp.fixed} />
+      <div dangerouslySetInnerHTML={{ __html: page.html }} />
+    </div>
+  );
+};
 export const query = graphql`
-  query($slug: String!, $image: String!) {
+  query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title
-      }
-    }
-    image: file(relativePath: { eq: $image }) {
-      childImageSharp {
-        fixed(width: 500) {
-          ...GatsbyImageSharpFixed
+        img {
+          childImageSharp{
+              fixed(width: 856) {
+                ...GatsbyImageSharpFixed
+              }
+          }
         }
       }
     }
   }
-`
+`;

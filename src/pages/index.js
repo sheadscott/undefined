@@ -1,27 +1,33 @@
-import React from "react"
-import Project from "../components/project" 
-import Layout from "../components/layout"
+import React from 'react';
+import Project from '../components/project';
 // Use gatsby-image, sharp, etc.
 // Widths
 // desktop: 1200px
 // superwide: 2200px
 // phone: 414px
 
-export default ({data}) => {
-  return (  
-    <Layout>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Project 
-          key={ node.id }
-          slug={ node.fields.slug }
-          title={ node.frontmatter.title }
-          tagline={ node.frontmatter.tagline }
-          image={ node.frontmatter.img }
-        />
-      ))}
-    </Layout>
-  )
-}
+export default ({ data }) => {
+  return (
+    <div>
+      {data.allMarkdownRemark.edges.map(({ node }) => {
+        console.log('node', node.frontmatter);
+        return (
+          <Project
+            key={node.id}
+            slug={node.fields.slug}
+            title={node.frontmatter.title}
+            tagline={node.frontmatter.tagline}
+            image={
+              node.frontmatter.img
+                ? node.frontmatter.img.childImageSharp.fixed
+                : null
+            }
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export const query = graphql`
   query {
@@ -33,7 +39,13 @@ export const query = graphql`
           frontmatter {
             title
             tagline
-            img
+            img {
+              childImageSharp{
+                  fixed(width: 600) {
+                    ...GatsbyImageSharpFixed
+                  }
+              }
+            }
           }
           fields {
             slug
@@ -42,4 +54,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
