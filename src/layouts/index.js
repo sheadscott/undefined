@@ -31,6 +31,10 @@ export default ({ children }) => (
                 alt={data.site.siteMetadata.title}
               />
             </Link>
+            <Link to={`/contact`}>
+              Contact
+            </Link>
+            <p id="tagline">Really amazing tagline will go right here! Is it amazing enough? Then write it again!</p>
           </header>
           <main>
             {children}
