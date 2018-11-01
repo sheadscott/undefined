@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import styled from "styled-components";
+import icon from "../images/button.svg";
 
 const Section = styled.section`
   margin: 4rem 0 0 auto;
@@ -19,6 +20,10 @@ const Text = styled.div`
     text-transform: uppercase;
     font-size: 2rem;
   }
+`
+
+const Icon = styled.img`
+  width: 80px;
 `
 
 const Image = styled(Img)`
@@ -40,6 +45,7 @@ export default props => (
         <Text>
           <h1>{props.title}</h1>
           <h2>{props.tagline}</h2>
+          <Icon src={icon} alt="" />
         </Text>
         {props.image && <Image fixed={props.image} alt="" />}
       </Section>
