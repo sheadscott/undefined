@@ -1,5 +1,5 @@
 ---
-title: "CK One Shockkkkkkkkkkkk"
+title: "CK One Shock"
 tagline: "Tiny tagline or explainer text, at least one sentence but a long one."
 img: "./ck-one.png"
 order: 2

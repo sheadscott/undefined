@@ -1,5 +1,6 @@
 import React from 'react';
 import Project from '../components/project';
+
 // Use gatsby-image, sharp, etc.
 // Widths
 // desktop: 1200px
@@ -41,7 +42,7 @@ export const query = graphql`
             tagline
             img {
               childImageSharp{
-                  fixed(width: 600) {
+                  fixed(width: 400) {
                     ...GatsbyImageSharpFixed
                   }
               }

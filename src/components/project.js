@@ -1,18 +1,49 @@
 import React from 'react';
-import style from './project.module.css';
 import Img from 'gatsby-image';
+import styled from "styled-components";
+
+const Section = styled.section`
+  margin: 4rem 0 0 auto;
+  max-width: 90%;
+  display: flex;
+`
+
+
+const Text = styled.div`
+  flex: 1;
+  color: black;
+  h1, h2 {
+    font-weight: normal;
+  }
+  h1 {
+    text-transform: uppercase;
+    font-size: 2rem;
+  }
+`
+
+const Image = styled(Img)`
+  align-self: center;
+  flex: 2;
+  margin-bottom: 0;
+  max-width: 400px;
+`
+
+const HRule = styled.div`
+  border-bottom: 1px solid #666;
+  margin-left: 25%;
+`
 
 export default props => (
   <a href={props.slug}>
     <div>
-      <section>
-        <div className={style.text}>
+      <Section>
+        <Text>
           <h1>{props.title}</h1>
           <h2>{props.tagline}</h2>
-        </div>
-        {props.image && <Img fixed={props.image} alt="" />}
-      </section>
-      <div className={style.hrule} />
+        </Text>
+        {props.image && <Image fixed={props.image} alt="" />}
+      </Section>
+      <HRule />
     </div>
   </a>
 );
