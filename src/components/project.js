@@ -6,14 +6,21 @@ import icon from '../images/button.svg';
 const Section = styled.section`
   margin: 4rem 0 0 2rem;
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Text = styled.div`
-  flex: 1;
   padding-right: 20%;
   color: black;
+  width: 50%;
+
+  @media (min-width: 768px){
+    width: 100%;
+  }
+
   h1, h2 {
     font-weight: normal;
+    width: 100%;
   }
   h1 {
     text-transform: uppercase;
@@ -27,17 +34,22 @@ const Text = styled.div`
 
 const Icon = styled.img`
   width: 80px;
+  order: 1;
+  align-self: flex-start;
+
+  @media (min-width: 768px){
+    order: 3;
+    align-self: auto;
+  }
 `;
 
-const Image = styled(Img)`
-  align-self: center;
-  flex: 2;
-  margin-bottom: 0;
+const ImageContainer = styled.div`
   max-width: 400px;
 
   @media (min-width: 1200px){
     max-width: 600px;
   }
+
 `;
 
 const HRule = styled.div`
@@ -52,9 +64,11 @@ export default props => (
         <Text>
           <h1>{props.title}</h1>
           <h2>{props.tagline}</h2>
-          <Icon src={icon} alt="" />
         </Text>
-        {props.image && <Image fluid={props.image} alt="" />}
+        <Icon src={icon} alt="" />
+        <ImageContainer>
+            {props.image && <Img fluid={props.image} alt="" />}
+        </ImageContainer>
       </Section>
       <HRule />
     </div>
