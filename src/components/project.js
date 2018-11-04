@@ -10,6 +10,7 @@ const Section = styled.section`
 
 const Text = styled.div`
   flex: 1;
+  padding-right: 20%;
   color: black;
   h1, h2 {
     font-weight: normal;
@@ -17,6 +18,7 @@ const Text = styled.div`
   h1 {
     text-transform: uppercase;
     font-size: 36px;
+    margin-top: 0;
   }
   h2 {
     font-size: 24px;
@@ -32,6 +34,10 @@ const Image = styled(Img)`
   flex: 2;
   margin-bottom: 0;
   max-width: 400px;
+
+  @media (min-width: 1200px){
+    max-width: 600px;
+  }
 `;
 
 const HRule = styled.div`
