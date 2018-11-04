@@ -12,10 +12,10 @@ const Section = styled.section`
 const Text = styled.div`
   padding-right: 20%;
   color: black;
-  width: 50%;
+  position: relative;
 
   @media (min-width: 768px){
-    width: 100%;
+    width: 40%;
   }
 
   h1, h2 {
@@ -34,20 +34,39 @@ const Text = styled.div`
 
 const Icon = styled.img`
   width: 80px;
-  order: 1;
-  align-self: flex-start;
+
+  position: absolute;
+  top: 0;
+  right: 2rem;
 
   @media (min-width: 768px){
-    order: 3;
-    align-self: auto;
+    position: relative;
+    right: 0;
   }
 `;
 
 const ImageContainer = styled.div`
-  max-width: 400px;
+  width: 100%;
+  flex: auto;
+  order: 3;
+
+  @media (min-width: 728px){
+    width: 30%;
+    order: 2;
+  }
+`
+
+const Image = styled(Img)`
+
+  float: right;
+  width: 280px;
+
+  @media (min-width: 414px){
+    width: 400px;
+  }
 
   @media (min-width: 1200px){
-    max-width: 600px;
+    width: 600px;
   }
 
 `;
@@ -64,10 +83,10 @@ export default props => (
         <Text>
           <h1>{props.title}</h1>
           <h2>{props.tagline}</h2>
+          <Icon src={icon} alt="" />
         </Text>
-        <Icon src={icon} alt="" />
         <ImageContainer>
-            {props.image && <Img fluid={props.image} alt="" />}
+          {props.image && <Image fluid={props.image} alt="" />}
         </ImageContainer>
       </Section>
       <HRule />
