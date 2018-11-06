@@ -73,6 +73,30 @@ const HRule = styled.div`
   margin-left: 10%;
 `;
 
+const PageContent = styled.div`
+
+  .float {
+    width: 300px; 
+  }
+
+  .right {
+    float: right; 
+    padding: 0 0 2rem 3rem;
+  }
+
+  .left {
+    float: left; 
+    padding: 0 3rem 2rem 0;
+  }
+
+  @media (max-width: 600px) {
+    .right, .left {
+      float: none;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+  }
+`
 export default props => {
   const page = props.data.markdownRemark;
   console.log('page', page);
@@ -103,7 +127,7 @@ export default props => {
 
         <HRule />
 
-        <div dangerouslySetInnerHTML={{ __html: page.html }} />
+        <PageContent dangerouslySetInnerHTML={{ __html: page.html }} />
       </Article>
     </div>
   );

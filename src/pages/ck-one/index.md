@@ -11,7 +11,7 @@ The eggs and nymphs are under attack by parasitoids including blow flies, flesh 
 
 The grasshopper nematode (Mermis nigrescens) is a long slender worm that infects grasshoppers, living in the insect's hemocoel. Adult worms lay eggs on plants and the host becomes infected when the foliage is eaten.
 
-<div style="float: right; width: 300px;">
+<div class="float right">
     <img src="grasshopper.jpg" alt="" />
 </div>
 
@@ -21,7 +21,7 @@ Grasshoppers exemplify a range of anti-predator adaptations, enabling them to av
 
 Several species such as the hooded leaf grasshopper Phyllochoreia ramakrishnai (Eumastacoidea)  are detailed mimics of leaves. Stick grasshoppers (Proscopiidae) mimic wooden sticks in form and colouration.
 
-<div style="float: left; width: 200px; padding: 0 3rem 2rem 0;">
+<div class="float left" style="width: 200px;"> 
     <img src="grasshopper.jpg" alt="" />
 </div>
 
