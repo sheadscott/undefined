@@ -10,7 +10,7 @@ const Section = styled.section`
 `;
 
 const Text = styled.div`
-  padding-right: 20%;
+  padding-right: calc(70px + 2rem);
   color: black;
   position: relative;
 
@@ -24,20 +24,29 @@ const Text = styled.div`
   }
   h1 {
     text-transform: uppercase;
-    font-size: 36px;
+    font-size: 19px;
     margin-top: 0;
+    @media (min-width: 415px) {
+      font-size: 36px;
+    }
   }
   h2 {
-    font-size: 24px;
+    font-size: 16px;
+    @media (min-width: 415px) {
+      font-size: 24px;
+    }
   }
 `;
 
 const Icon = styled.img`
-  width: 80px;
-
+  width: 63px;
   position: absolute;
   top: 0;
   right: 2rem;
+  
+  @media (min-width: 415px) {
+    width: 80px;
+  }
 
   @media (min-width: 768px){
     position: relative;
@@ -54,7 +63,7 @@ const ImageContainer = styled.div`
     width: 30%;
     order: 2;
   }
-`
+`;
 
 const Image = styled(Img)`
 
