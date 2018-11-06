@@ -9,15 +9,21 @@ Grasshoppers have a wide range of predators at different stages of their lives; 
 
 The eggs and nymphs are under attack by parasitoids including blow flies, flesh flies, and tachinid flies. External parasites of adults and nymphs include mites.
 
-![Grasshopper](grasshopper.jpg "Grasshopper")
-
 The grasshopper nematode (Mermis nigrescens) is a long slender worm that infects grasshoppers, living in the insect's hemocoel. Adult worms lay eggs on plants and the host becomes infected when the foliage is eaten.
+
+<div style="float: right; width: 300px;">
+    <img src="grasshopper.jpg" alt="" />
+</div>
 
 The fungal pathogen Metarhizium acridum is found in Africa, Australia and Brazil where it has caused epizootics in grasshoppers. It is being investigated for possible use as a microbial insecticide for locust control.
 
 Grasshoppers exemplify a range of anti-predator adaptations, enabling them to avoid detection, to escape if detected, and in some cases to avoid being eaten if captured. Grasshoppers are often camouflaged to avoid detection by predators that hunt by sight; some species can change their coloration to suit their surroundings.
 
 Several species such as the hooded leaf grasshopper Phyllochoreia ramakrishnai (Eumastacoidea)  are detailed mimics of leaves. Stick grasshoppers (Proscopiidae) mimic wooden sticks in form and colouration.
+
+<div style="float: left; width: 200px; padding: 0 3rem 2rem 0;">
+    <img src="grasshopper.jpg" alt="" />
+</div>
 
 Some species are genuinely aposematic, having both bright warning coloration and sufficient toxicity to dissuade predators. Dictyophorus productus (Pyrgomorphidae) is a "heavy, bloated, sluggish insect" that makes no attempt to hide; it has a bright red abdomen. A Cercopithecus monkey that ate other grasshoppers refused to eat the species.
 

@@ -59,10 +59,13 @@ const ContentWrap = styled.div`
   align-items: flex-start;
   justify-content: flex-end;
   padding-bottom: 2rem;
+  padding-right: 2rem;
+  width: 70%;
 `;
 
 const ImageWrap = styled.div`
   width: 50%;
+  align-self: flex-end;
 `;
 
 const HRule = styled.div`
