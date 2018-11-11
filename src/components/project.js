@@ -2,6 +2,7 @@ import React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import icon from '../images/button.svg';
+import { Link } from 'gatsby';
 
 const Section = styled.section`
   margin: 4rem 0 0 2rem;
@@ -85,8 +86,29 @@ const HRule = styled.div`
   margin-left: 10%;
 `;
 
-export default props => (
-  <a href={props.slug}>
+export default props => {
+  if (props.details === true) {
+    console.log('we have a link', props.slug);
+    return (
+      <Link to={props.slug}>
+        <div>
+          <Section>
+            <Text>
+              <h1>{props.title}</h1>
+              <h2>{props.tagline}</h2>
+              <Icon src={icon} alt="" />
+            </Text>
+            <ImageContainer>
+              {props.image && <Image fluid={props.image} alt="" />}
+            </ImageContainer>
+          </Section>
+          <HRule />
+        </div>
+      </Link>
+    );
+  }
+
+  return (
     <div>
       <Section>
         <Text>
@@ -100,5 +122,5 @@ export default props => (
       </Section>
       <HRule />
     </div>
-  </a>
-);
+  );
+};

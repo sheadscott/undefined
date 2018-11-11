@@ -42,13 +42,13 @@ export default ({ data }) => {
       </Header>
       <main>
         {data.allMarkdownRemark.edges.map(({ node }) => {
-          console.log('node', node.frontmatter);
           return (
             <Project
               key={node.id}
               slug={node.fields.slug}
               title={node.frontmatter.title}
               tagline={node.frontmatter.tagline}
+              details={node.frontmatter.details === false ? false : true}
               image={
                 node.frontmatter.img
                   ? node.frontmatter.img.childImageSharp.fluid
@@ -91,6 +91,7 @@ export const query = graphql`
                 }
               }
             }
+            details
           }
           fields {
             slug

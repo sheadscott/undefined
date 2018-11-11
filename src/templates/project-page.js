@@ -42,15 +42,21 @@ const Header = styled.header`
 `;
 
 const H1 = styled.h1`
-  font-size: 48px;
+  font-size: 19px;
   margin: 0;
   font-weight: 400;
+  @media (min-width: 415px) {
+      font-size: 48px;
+    }
 `;
 
 const H2 = styled.h2`
-  font-size: 36px;
+  font-size: 16px;
   margin: 0;
   font-weight: 400;
+  @media (min-width: 415px) {
+      font-size: 24px;
+    }
 `;
 
 const ContentWrap = styled.div`
@@ -96,7 +102,7 @@ const PageContent = styled.div`
       padding: 1rem;
     }
   }
-`
+`;
 export default props => {
   const page = props.data.markdownRemark;
   console.log('page', page);
