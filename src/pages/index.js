@@ -6,6 +6,10 @@ import { Link } from 'gatsby';
 import Project from '../components/project';
 import Contact from '../components/contact';
 
+const MainContainer = styled.div`
+  padding-bottom: 6rem;
+`
+
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -25,7 +29,7 @@ const SiteTagline = styled.p`
 
 export default ({ data }) => {
   return (
-    <div>
+    <MainContainer>
       <Header>
         <Link to={`/`}>
           <Img
@@ -58,7 +62,7 @@ export default ({ data }) => {
           );
         })}
       </main>
-    </div>
+    </MainContainer>
   );
 };
 

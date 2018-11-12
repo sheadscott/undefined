@@ -15,8 +15,18 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const referrerPage =  document.referrer.split('/')[-1];
+
+function goBack() {
+  window.history.back();
+}
+
 const Back = props => (
-  <StyledLink {...props} to="/">
+  <StyledLink 
+    {...props}
+    to="/"
+    onClick={ goBack }
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

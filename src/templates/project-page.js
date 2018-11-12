@@ -3,18 +3,9 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
+import Nav from '../components/nav';
 import Back from '../components/back';
 import Contact from '../components/contact';
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  z-index: 999;
-`;
 
 const BackButton = styled(Back)`
   background: black;
@@ -33,6 +24,7 @@ const ContactButton = styled(Contact)`
 
 const Article = styled.article`
   padding: 2rem;
+  padding-right: 0;
   font-size: 18px;
 `;
 
@@ -64,6 +56,7 @@ const ContentWrap = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
+  margin-top: 4.5rem;
   padding-bottom: 2rem;
   padding-right: 2rem;
   width: 70%;

@@ -3,11 +3,23 @@ import styled from "styled-components";
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 
+import Nav from '../components/nav';
+import Back from '../components/back';
+
+const BackButton = styled(Back)`
+  background: black;
+  border-radius: 0 0 10px 0;
+
+  svg {
+    fill: white;
+  }
+`;
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  margin-top: 4.5rem;
 `;
 
 const Form = styled.form`
@@ -60,6 +72,9 @@ const Form = styled.form`
 `
 export default ({ data }) => (
     <div>
+        <Nav>
+            <BackButton />
+        </Nav>
         <Header>
         <Link to={`/`}>
             <Img
