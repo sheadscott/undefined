@@ -58,5 +58,6 @@ typings/
 .env
 
 .cache/
+.next/
 public
 yarn-error.log

@@ -15,7 +15,6 @@ const DrawerStyles = styled.div`
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   z-index: 5;
   opacity: 0;
-  grid-template-rows: auto 1fr auto;
   ${props => props.open && `transform: translateX(0);`};
   ${props => props.open && `opacity: 1;`};
   ${props => props.transitionEnded && `width: 0;`};
