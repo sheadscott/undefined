@@ -15,10 +15,14 @@ const DrawerStyles = styled.div`
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   z-index: 5;
   opacity: 0;
-  ${props => props.open && `transform: translateX(0);`};
-  ${props => props.open && `opacity: 1;`};
-  ${props => props.transitionEnded && `width: 0;`};
-  ${props => props.transitionEnded && `padding: 0;`};
+  ${props => props.open && `
+    transform: translateX(0);
+    opacity: 1;
+  `};
+  ${props => props.transitionEnded && `
+    width: 0;
+    padding: 0;
+  `};
 
   h1 {
     text-transform: uppercase;

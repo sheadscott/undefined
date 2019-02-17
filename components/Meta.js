@@ -6,7 +6,9 @@ const Meta = () => (
     <meta charSet="utf-8" />
     <link rel="shortcut icon" href="/static/favicon.png" />
     <link rel="stylesheet" href="https://use.typekit.net/ccq8qac.css" />
-    <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+
+    {/* this doesn't appear to be part of the repo */}
+    {/*<link rel="stylesheet" type="text/css" href="/static/nprogress.css" />*/}
     <title>Undefined State</title>
   </Head>
 );

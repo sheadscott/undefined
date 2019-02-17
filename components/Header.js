@@ -17,13 +17,15 @@ const StyledHeader = styled.header`
       width: 120px;
     }
   }
-  button {
-    border: none;
-    font-size: 1.6rem;
-    display: block;
-  }
   a {
     display: block;
+  }
+`;
+
+const Nav = styled.nav`
+  a {
+    font-size: 1.25rem;
+    text-transform: uppercase;
   }
 `;
 
@@ -36,9 +38,11 @@ const Header = () => (
         </a>
       </Link>
     </h1>
-    <nav>
-      <button>Contact</button>
-    </nav>
+    <Nav>
+      <Link href="/contact">
+        <a>Contact</a>
+      </Link>
+    </Nav>
   </StyledHeader>
 );
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Icon from '../static/button.svg';
 
 const Section = styled.section`
-  margin: 4rem 0 0 2rem;
+  margin: 4rem 0 0 0;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -13,7 +13,7 @@ const Text = styled.div`
   position: relative;
 
   @media (min-width: 768px) {
-    width: 40%;
+    width: 60%;
   }
 
   h1,
@@ -23,16 +23,17 @@ const Text = styled.div`
   }
   h1 {
     text-transform: uppercase;
-    font-size: 19px;
+    font-size: 18px;
     margin-top: 0;
+    font-weight: 700;
     @media (min-width: 415px) {
-      font-size: 36px;
+      font-size: 28px;
     }
   }
   h2 {
-    font-size: 16px;
+    font-size: 18px;
     @media (min-width: 415px) {
-      font-size: 24px;
+      font-size: 28px;
     }
   }
 `;
@@ -57,29 +58,35 @@ const ImageContainer = styled.div`
   width: 100%;
   flex: auto;
   order: 3;
+  display: flex;
+  align-items: flex-end;
 
   @media (min-width: 728px) {
-    width: 30%;
+    width: 40%;
     order: 2;
   }
 `;
 
 const Image = styled.img`
-  float: right;
-  width: 280px;
+  /* float: right; */
+  /* width: 280px; */
+  max-width: 100%;
 
   @media (min-width: 414px) {
-    width: 400px;
+    /* width: 400px; */
   }
 
   @media (min-width: 1200px) {
-    width: 600px;
+    /* width: 600px; */
   }
 `;
 
 const HRule = styled.div`
+  position: relative;
+  right: -2rem;
   border-bottom: 1px solid #666;
-  margin-left: 10%;
+  width: 90%;
+  margin-left: 10%; 
 `;
 
 const Project = ({ project }) => (
@@ -91,9 +98,8 @@ const Project = ({ project }) => (
         <StyledIcon />
       </Text>
       <ImageContainer>
-        {project.img && (
-          <Image src={'/static/projects/' + project.img} alt="" />
-        )}
+        {project.img &&
+          <Image src={'/static/projects/' + project.img} alt="" />}
       </ImageContainer>
     </Section>
     <HRule />
