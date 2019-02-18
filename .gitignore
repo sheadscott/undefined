@@ -60,5 +60,6 @@ typings/
 .cache/
 .next/
 public
+out
 yarn-error.log
 .DS_Store

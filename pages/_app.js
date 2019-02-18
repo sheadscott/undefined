@@ -11,7 +11,6 @@ import DrawerStyles from '../styles/DrawerStyles';
 import Arrow from '../static/arrow.svg';
 
 import siteData from '../data.js';
-import newSiteData from '../data2.js';
 
 const theme = {
   fontFamily: `'brandon-grotesque', Arial, Helvetica, sans-serif;`,
