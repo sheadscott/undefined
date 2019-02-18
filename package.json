@@ -19,6 +19,7 @@
     "webpack": "^4.29.3"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "babel-plugin-inline-react-svg": "0.4.0"
   }
 }

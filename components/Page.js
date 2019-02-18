@@ -4,18 +4,21 @@ import Parser from 'html-react-parser';
 import Link from 'next/link';
 import Project from './Project';
 import DrawerStyles from '../styles/DrawerStyles';
+import Arrow from '../static/arrow.svg';
 
 import siteData from '../data.js';
+import newSiteData from '../data2.js';
 
 class Page extends Component {
   state = {
     selectedProject: {},
     drawerOpen: false,
-    transitionEnded: false
+    transitionEnded: false,
+    id: this.props.id
   };
 
   handleClick = (project, e) => {
-    console.log(e.target);
+    // console.log(e.target);
     if (project) {
       this.setState({ selectedProject: project });
     }
@@ -35,7 +38,7 @@ class Page extends Component {
   };
 
   render() {
-    console.log(siteData);
+    //console.log(siteData);
     return (
       <React.Fragment>
         <Screen
@@ -59,7 +62,39 @@ class Page extends Component {
           onTransitionEnd={this.handleTransitionEnd}
           transitionEnded={this.state.transitionEnded}
         >
-          <h1>{this.state.selectedProject.title}</h1>
+          <header
+            style={{
+              padding: '10px 20px',
+              margin: '-20px -20px 0',
+              background: '#000',
+              display: 'flex',
+              justifyContent: 'space-between',
+              position: 'fixed',
+              width: '100%'
+            }}
+          >
+            <button
+              style={{
+                background: 'transparent',
+                border: 'none'
+              }}
+              onClick={e => this.handleClick(null, e)}
+              aria-label="back"
+            >
+              <Arrow />
+            </button>
+
+            <div
+              style={{ textAlign: 'right', color: 'white', fontSize: '24px' }}
+            >
+              UNDEFINED<br />
+              STATE
+            </div>
+          </header>
+
+          <h1 style={{ marginTop: '90px' }}>
+            {this.state.selectedProject.title}
+          </h1>
           <h3>{this.state.selectedProject.tagline}</h3>
           <p>
             {Object.keys(this.state.selectedProject).length !== 0
@@ -67,6 +102,8 @@ class Page extends Component {
               : null}
           </p>
         </DrawerStyles>
+
+        <footer />
       </React.Fragment>
     );
   }

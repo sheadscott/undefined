@@ -29,7 +29,7 @@ const Nav = styled.nav`
   }
 `;
 
-const Header = () => (
+const Header = props => (
   <StyledHeader>
     <h1>
       <Link href="/">
@@ -40,7 +40,7 @@ const Header = () => (
     </h1>
     <Nav>
       <Link href="/contact">
-        <a>Contact</a>
+        <a onClick={props.openDrawer}>Contact</a>
       </Link>
     </Nav>
   </StyledHeader>
