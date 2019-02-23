@@ -1,20 +1,17 @@
-import App, { Container } from 'next/app';
-// import Page from '../components/Page';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import App, { Container } from "next/app";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
-import Link from 'next/link';
-import Project from '../components/Project';
+import Link from "next/link";
 
-import Meta from '../components/Meta';
-import Header from '../components/Header';
-import DrawerStyles from '../styles/DrawerStyles';
-import Arrow from '../static/arrow.svg';
-
-import siteData from '../data.js';
+import Meta from "../components/Meta";
+import Header from "../components/Header";
+import ProjectList from "../components/ProjectList";
+import DrawerStyles from "../styles/DrawerStyles";
+import Arrow from "../static/arrow.svg";
 
 const theme = {
   fontFamily: `'brandon-grotesque', Arial, Helvetica, sans-serif;`,
-  black: '#000000'
+  black: "#000000"
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -65,9 +62,9 @@ class CustomApp extends App {
   // }
 
   componentDidMount() {
-    console.log('path', window.location.pathname);
+    console.log("path", window.location.pathname);
     // open drawer if we're not at site root
-    if (window.location.pathname !== '/') {
+    if (window.location.pathname !== "/") {
       this.openDrawer();
     }
   }
@@ -90,24 +87,26 @@ class CustomApp extends App {
   };
 
   handleClick = (project, e) => {
-    console.log(e.target);
+    console.log("click target: ", e.target);
 
     if (project) {
       this.setState({ selectedProject: project });
     }
 
     if (!this.state.drawerOpen) {
-      // document.querySelector('.drawer').style.width = '80%';
       this.setState({ transitionEnded: false });
     }
     this.setState(prevState => ({ drawerOpen: !prevState.drawerOpen }));
   };
 
   handleTransitionEnd = e => {
-    if (!this.state.drawerOpen && e.propertyName === 'opacity') {
-      console.log('ended');
+    console.log("transition ended");
+    if (!this.state.drawerOpen && e.propertyName === "opacity") {
+      document.querySelector(".drawer").scrollTop = 0;
       // document.querySelector('.drawer').style.width = '0';
-      this.setState({ transitionEnded: true });
+      this.setState({ transitionEnded: true }, () => {
+        document.querySelector(".drawer").scrollTop = 0;
+      });
     }
   };
 
@@ -119,25 +118,34 @@ class CustomApp extends App {
           <Meta />
           <GlobalStyle />
           <Header openDrawer={this.openDrawer} />
+          <Link href="/" scroll={false}>
+            <a onClick={e => this.handleClick(null, e)}>
+              <Screen
+                className="screen"
+                open={this.state.drawerOpen}
+                transitionEnded={this.state.transitionEnded}
+                aria-label="back"
+              />
+            </a>
+          </Link>
 
-          <Screen
-            className="screen"
-            open={this.state.drawerOpen}
-            onClick={this.closeDrawer}
-            transitionEnded={this.state.transitionEnded}
-          />
+          {/*
+          <ProjectList openDrawer={this.openDrawer} /> 
+          */}
 
+          <ProjectList openDrawer={this.openDrawer} />
+          {/*
           {siteData.map((project, index) => {
-            console.log('oh crap its a render!', Math.random());
+            console.log("oh crap its a render!", Math.random());
             return (
-              <Link key={project.url} href={project.url}>
+              <Link key={index} href={project.url}>
                 <a onClick={this.openDrawer}>
                   <Project project={project} />
                 </a>
               </Link>
             );
           })}
-
+          */}
           <DrawerStyles
             className="drawer"
             open={this.state.drawerOpen}
@@ -146,34 +154,38 @@ class CustomApp extends App {
           >
             <header
               style={{
-                padding: '10px 20px',
-                margin: '-20px -20px 0',
-                background: '#000',
-                display: 'flex',
-                justifyContent: 'space-between',
-                position: 'fixed',
-                width: '100%'
+                padding: "10px 20px",
+                margin: "-20px -20px 0",
+                background: "#000",
+                display: "flex",
+                justifyContent: "space-between",
+                position: "fixed",
+                width: "100%"
               }}
             >
-              <button
-                style={{
-                  background: 'transparent',
-                  border: 'none'
-                }}
-                onClick={e => this.handleClick(null, e)}
-                aria-label="back"
-              >
-                <Arrow />
-              </button>
+              <Link href="/">
+                <a onClick={e => this.handleClick(null, e)}>
+                  <button
+                    style={{
+                      background: "transparent",
+                      border: "none"
+                    }}
+                    aria-label="back"
+                  >
+                    <Arrow />
+                  </button>
+                </a>
+              </Link>
 
               <div
                 style={{
-                  textAlign: 'right',
-                  color: 'white',
-                  fontSize: '24px'
+                  textAlign: "right",
+                  color: "white",
+                  fontSize: "24px"
                 }}
               >
-                UNDEFINED<br />
+                UNDEFINED
+                <br />
                 STATE
               </div>
             </header>
@@ -187,7 +199,6 @@ class CustomApp extends App {
             </Wrapper>
           </DrawerStyles>
         </StyledPage>
-
       </ThemeProvider>
     );
   }
@@ -223,7 +234,9 @@ const Screen = styled.div`
   transition: opacity 0.4s;
   will-change: opacity;
 
-  ${props => props.open && `
+  ${props =>
+    props.open &&
+    `
     transform: translateX(0%);
     opacity: 0.5;
     z-index: 1;
@@ -246,7 +259,9 @@ const Wrapper = styled.div`
     font-weight: 400;
   }
 
-  img, figure, iframe {
+  img,
+  figure,
+  iframe {
     width: calc(100% + 40px);
     display: block;
     margin: 0 -20px;

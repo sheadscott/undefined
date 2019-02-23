@@ -1,5 +1,29 @@
-import styled from 'styled-components';
-import Icon from '../static/button.svg';
+import styled from "styled-components";
+import Icon from "../static/button.svg";
+
+const Project = ({ project }) => (
+  <div>
+    <Section>
+      <Text>
+        <h1>{project.title}</h1>
+        <h2>{project.tagline}</h2>
+        <StyledIcon />
+      </Text>
+      {project.img && project.imgNoMarginRight ? (
+        <ImageContainer className="no-margin-right">
+          <Image src={"/static/projects/" + project.img} alt="" />
+        </ImageContainer>
+      ) : (
+        <ImageContainer>
+          <Image src={"/static/projects/" + project.img} alt="" />
+        </ImageContainer>
+      )}
+    </Section>
+    <HRule />
+  </div>
+);
+
+export default Project;
 
 const Section = styled.section`
   margin: 4rem 0 0 0;
@@ -61,6 +85,10 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: flex-end;
 
+  &.no-margin-right {
+    margin-right: -2rem;
+  }
+
   @media (min-width: 728px) {
     width: 40%;
     order: 2;
@@ -83,27 +111,8 @@ const Image = styled.img`
 
 const HRule = styled.div`
   position: relative;
-  right: -2rem;
+  right: calc(-2rem + -1px);
   border-bottom: 1px solid #666;
   width: 90%;
-  margin-left: 10%; 
+  margin-left: 10%;
 `;
-
-const Project = ({ project }) => (
-  <div>
-    <Section>
-      <Text>
-        <h1>{project.title}</h1>
-        <h2>{project.tagline}</h2>
-        <StyledIcon />
-      </Text>
-      <ImageContainer>
-        {project.img &&
-          <Image src={'/static/projects/' + project.img} alt="" />}
-      </ImageContainer>
-    </Section>
-    <HRule />
-  </div>
-);
-
-export default Project;
