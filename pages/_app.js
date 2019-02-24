@@ -1,17 +1,18 @@
-import App, { Container } from "next/app";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import App, { Container } from 'next/app';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import Meta from "../components/Meta";
-import Header from "../components/Header";
-import ProjectList from "../components/ProjectList";
-import DrawerStyles from "../styles/DrawerStyles";
-import Arrow from "../static/arrow.svg";
+import Meta from '../components/Meta';
+import Header from '../components/Header';
+import ProjectList from '../components/ProjectList';
+import DrawerStyles from '../styles/DrawerStyles';
+import Arrow from '../static/arrow.svg';
+import { white } from 'ansi-colors';
 
 const theme = {
   fontFamily: `'brandon-grotesque', Arial, Helvetica, sans-serif;`,
-  black: "#000000"
+  black: '#000000'
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -62,15 +63,17 @@ class CustomApp extends App {
   // }
 
   componentDidMount() {
-    console.log("path", window.location.pathname);
+    console.log('path', window.location.pathname);
     // open drawer if we're not at site root
-    if (window.location.pathname !== "/") {
+    if (window.location.pathname !== '/') {
       this.openDrawer();
     }
   }
 
   openDrawer = () => {
     let temp = this.state.count + 1;
+    console.log('drawer ref', this.drawer.scrollTop);
+    this.drawer.scrollTop = 0;
     this.setState({
       drawerOpen: true,
       transitionEnded: false,
@@ -87,7 +90,7 @@ class CustomApp extends App {
   };
 
   handleClick = (project, e) => {
-    console.log("click target: ", e.target);
+    console.log('click target: ', e.target);
 
     if (project) {
       this.setState({ selectedProject: project });
@@ -100,12 +103,12 @@ class CustomApp extends App {
   };
 
   handleTransitionEnd = e => {
-    console.log("transition ended");
-    if (!this.state.drawerOpen && e.propertyName === "opacity") {
-      document.querySelector(".drawer").scrollTop = 0;
+    console.log('transition ended');
+    if (!this.state.drawerOpen && e.propertyName === 'opacity') {
+      document.querySelector('.drawer').scrollTop = 0;
       // document.querySelector('.drawer').style.width = '0';
       this.setState({ transitionEnded: true }, () => {
-        document.querySelector(".drawer").scrollTop = 0;
+        document.querySelector('.drawer').scrollTop = 0;
       });
     }
   };
@@ -114,27 +117,28 @@ class CustomApp extends App {
     const { Component } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <StyledPage>
-          <Meta />
-          <GlobalStyle />
-          <Header openDrawer={this.openDrawer} />
-          <Link href="/" scroll={false}>
-            <a onClick={e => this.handleClick(null, e)}>
-              <Screen
-                className="screen"
-                open={this.state.drawerOpen}
-                transitionEnded={this.state.transitionEnded}
-                aria-label="back"
-              />
-            </a>
-          </Link>
+        <div>
+          <StyledPage>
+            <Meta />
+            <GlobalStyle />
+            <Header openDrawer={this.openDrawer} />
+            <Link href="/" scroll={false}>
+              <a onClick={e => this.handleClick(null, e)}>
+                <Screen
+                  className="screen"
+                  open={this.state.drawerOpen}
+                  transitionEnded={this.state.transitionEnded}
+                  aria-label="back"
+                />
+              </a>
+            </Link>
 
-          {/*
+            {/*
           <ProjectList openDrawer={this.openDrawer} /> 
           */}
 
-          <ProjectList openDrawer={this.openDrawer} />
-          {/*
+            <ProjectList openDrawer={this.openDrawer} />
+            {/*
           {siteData.map((project, index) => {
             console.log("oh crap its a render!", Math.random());
             return (
@@ -146,59 +150,95 @@ class CustomApp extends App {
             );
           })}
           */}
+
+          </StyledPage>
+
+          {/* 
+            So to make things easier I just expanded drawer to 100% width
+            background became transparent and pointer events are none
+          */}
           <DrawerStyles
             className="drawer"
             open={this.state.drawerOpen}
             onTransitionEnd={this.handleTransitionEnd}
             transitionEnded={this.state.transitionEnded}
+            ref={el => this.drawer = el}
           >
-            <header
+            {/*
+              This thing just positions the content centered over the page
+            */}
+            <div
+              className="newPageWrapper"
               style={{
-                padding: "10px 20px",
-                margin: "-20px -20px 0",
-                background: "#000",
-                display: "flex",
-                justifyContent: "space-between",
-                position: "fixed",
-                width: "100%"
+                maxWidth: '1068px',
+                margin: '0 auto',
+                pointerEvents: 'none'
               }}
             >
-              <Link href="/">
-                <a onClick={e => this.handleClick(null, e)}>
-                  <button
-                    style={{
-                      background: "transparent",
-                      border: "none"
-                    }}
-                    aria-label="back"
-                  >
-                    <Arrow />
-                  </button>
-                </a>
-              </Link>
-
+              {/*
+                This one contains the visible drawer
+              */}
               <div
+                className="newDrawerConstraint"
                 style={{
-                  textAlign: "right",
-                  color: "white",
-                  fontSize: "24px"
+                  width: '95%',
+                  marginLeft: '5%',
+                  background: 'white',
+                  padding: '20px',
+                  boxSizing: 'border-box',
+                  pointerEvents: 'visible'
                 }}
               >
-                UNDEFINED
-                <br />
-                STATE
-              </div>
-            </header>
+                <header
+                  style={{
+                    padding: '10px 20px',
+                    margin: '-20px -20px 0',
+                    background: '#000',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    position: 'relative'
+                    // width: '100%'
+                  }}
+                >
+                  <Link href="/">
+                    <a onClick={e => this.handleClick(null, e)}>
+                      <button
+                        style={{
+                          background: 'transparent',
+                          border: 'none'
+                        }}
+                        aria-label="back"
+                      >
+                        <Arrow />
+                      </button>
+                    </a>
+                  </Link>
 
-            <Wrapper>
-              <Container>
-                {/* Page Data */}
-                <Component />
-                {/* End Page Data */}
-              </Container>
-            </Wrapper>
+                  <div
+                    style={{
+                      textAlign: 'right',
+                      color: 'white',
+                      fontSize: '24px'
+                    }}
+                  >
+                    UNDEFINED
+                    <br />
+                    STATE
+                  </div>
+                </header>
+
+                <Wrapper>
+                  <Container>
+                    {/* Page Data */}
+                    <Component />
+                    {/* End Page Data */}
+                  </Container>
+                </Wrapper>
+              </div>
+            </div>
           </DrawerStyles>
-        </StyledPage>
+        </div>
       </ThemeProvider>
     );
   }
@@ -234,9 +274,7 @@ const Screen = styled.div`
   transition: opacity 0.4s;
   will-change: opacity;
 
-  ${props =>
-    props.open &&
-    `
+  ${props => props.open && `
     transform: translateX(0%);
     opacity: 0.5;
     z-index: 1;
@@ -265,6 +303,11 @@ const Wrapper = styled.div`
     width: calc(100% + 40px);
     display: block;
     margin: 0 -20px;
+  }
+
+  figure img {
+    width: 100%;
+    margin: 0;
   }
 
   figcaption {
