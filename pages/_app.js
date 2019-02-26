@@ -150,7 +150,6 @@ class CustomApp extends App {
             );
           })}
           */}
-
           </StyledPage>
 
           {/* 
@@ -162,7 +161,7 @@ class CustomApp extends App {
             open={this.state.drawerOpen}
             onTransitionEnd={this.handleTransitionEnd}
             transitionEnded={this.state.transitionEnded}
-            ref={el => this.drawer = el}
+            ref={el => (this.drawer = el)}
           >
             {/*
               This thing just positions the content centered over the page
@@ -172,7 +171,8 @@ class CustomApp extends App {
               style={{
                 maxWidth: '1068px',
                 margin: '0 auto',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                height: '100%'
               }}
             >
               {/*
@@ -182,11 +182,14 @@ class CustomApp extends App {
                 className="newDrawerConstraint"
                 style={{
                   width: '95%',
+                  height: '100%',
+                  overflowY: 'scroll',
                   marginLeft: '5%',
                   background: 'white',
                   padding: '20px',
                   boxSizing: 'border-box',
-                  pointerEvents: 'visible'
+                  pointerEvents: 'auto',
+                  border: '10px solid red'
                 }}
               >
                 <header
@@ -274,7 +277,9 @@ const Screen = styled.div`
   transition: opacity 0.4s;
   will-change: opacity;
 
-  ${props => props.open && `
+  ${props =>
+    props.open &&
+    `
     transform: translateX(0%);
     opacity: 0.5;
     z-index: 1;

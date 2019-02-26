@@ -5,7 +5,7 @@ const DrawerStyles = styled.div`
   position: fixed;
   /* background: white; */
   background: transparent;
-  height: 100%;
+  height: 100vh;
   top: 0;
   right: 0;
   /* width: 95%; */
@@ -19,12 +19,15 @@ const DrawerStyles = styled.div`
   /* box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2); */
   z-index: 5;
   opacity: 0;
-  overflow-y: scroll;
-  ${props => props.open && `
+  ${props =>
+    props.open &&
+    `
     transform: translateX(0);
     opacity: 1;
   `};
-  ${props => props.transitionEnded && `
+  ${props =>
+    props.transitionEnded &&
+    `
     width: 0;
     padding: 0;
   `};
