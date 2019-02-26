@@ -188,8 +188,7 @@ class CustomApp extends App {
                   background: 'white',
                   padding: '20px',
                   boxSizing: 'border-box',
-                  pointerEvents: 'auto',
-                  border: '10px solid red'
+                  pointerEvents: 'auto'
                 }}
               >
                 <header
