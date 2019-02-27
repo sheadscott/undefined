@@ -1,1 +1,1 @@
-export default () => <div>noop</div>;
+export default () => <div>&nbsp;</div>;
