@@ -1,18 +1,18 @@
-import App, { Container } from 'next/app';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import App, { Container } from "next/app";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import Meta from '../components/Meta';
-import Header from '../components/Header';
-import ProjectList from '../components/ProjectList';
-import DrawerStyles from '../styles/DrawerStyles';
-import Arrow from '../static/arrow.svg';
-import { white } from 'ansi-colors';
+import Meta from "../components/Meta";
+import Header from "../components/Header";
+import ProjectList from "../components/ProjectList";
+import DrawerStyles from "../styles/DrawerStyles";
+import Arrow from "../static/arrow.svg";
+import { white } from "ansi-colors";
 
 const theme = {
   fontFamily: `'brandon-grotesque', Arial, Helvetica, sans-serif;`,
-  black: '#000000'
+  black: "#000000"
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -63,16 +63,15 @@ class CustomApp extends App {
   // }
 
   componentDidMount() {
-    console.log('path', window.location.pathname);
     // open drawer if we're not at site root
-    if (window.location.pathname !== '/') {
+    if (window.location.pathname !== "/") {
       this.openDrawer();
     }
   }
 
   openDrawer = () => {
     let temp = this.state.count + 1;
-    console.log('drawer ref', this.drawer.scrollTop);
+    console.log("drawer ref", this.drawer.scrollTop);
     this.drawer.scrollTop = 0;
     this.setState({
       drawerOpen: true,
@@ -90,7 +89,7 @@ class CustomApp extends App {
   };
 
   handleClick = (project, e) => {
-    console.log('click target: ', e.target);
+    console.log("click target: ", e.target);
 
     if (project) {
       this.setState({ selectedProject: project });
@@ -103,13 +102,29 @@ class CustomApp extends App {
   };
 
   handleTransitionEnd = e => {
-    console.log('transition ended');
-    if (!this.state.drawerOpen && e.propertyName === 'opacity') {
-      document.querySelector('.drawer').scrollTop = 0;
-      // document.querySelector('.drawer').style.width = '0';
+    if (!this.state.drawerOpen && e.propertyName === "opacity") {
       this.setState({ transitionEnded: true }, () => {
-        document.querySelector('.drawer').scrollTop = 0;
+        document.querySelector(".newDrawerConstraint").scrollTop = 0;
       });
+    }
+  };
+
+  xValue = null;
+  clickTime = null;
+
+  handleTouchStart = e => {
+    this.xValue = e.clientX || e.touches[0].clientX;
+    this.clickTime = Date.now();
+  };
+
+  handleTouchEnd = e => {
+    const endTime = Date.now();
+    const xChange =
+      e.type === "touchend"
+        ? e.changedTouches[0].clientX - this.xValue
+        : e.clientX - this.xValue;
+    if (xChange > 30 && endTime - this.clickTime < 700) {
+      this.handleClick(null, e);
     }
   };
 
@@ -121,7 +136,7 @@ class CustomApp extends App {
           <StyledPage>
             <Meta />
             <GlobalStyle />
-            <Header openDrawer={this.openDrawer} />
+            <Header handleClick={this.handleClick} />
             <Link href="/" scroll={false}>
               <a onClick={e => this.handleClick(null, e)}>
                 <Screen
@@ -132,24 +147,7 @@ class CustomApp extends App {
                 />
               </a>
             </Link>
-
-            {/*
-          <ProjectList openDrawer={this.openDrawer} /> 
-          */}
-
             <ProjectList openDrawer={this.openDrawer} />
-            {/*
-          {siteData.map((project, index) => {
-            console.log("oh crap its a render!", Math.random());
-            return (
-              <Link key={index} href={project.url}>
-                <a onClick={this.openDrawer}>
-                  <Project project={project} />
-                </a>
-              </Link>
-            );
-          })}
-          */}
           </StyledPage>
 
           {/* 
@@ -166,52 +164,21 @@ class CustomApp extends App {
             {/*
               This thing just positions the content centered over the page
             */}
-            <div
-              className="newPageWrapper"
-              style={{
-                maxWidth: '1068px',
-                margin: '0 auto',
-                pointerEvents: 'none',
-                height: '100%'
-              }}
-            >
+            <div className="newPageWrapper">
               {/*
                 This one contains the visible drawer
               */}
               <div
                 className="newDrawerConstraint"
-                style={{
-                  width: '95%',
-                  height: '100%',
-                  overflowY: 'scroll',
-                  marginLeft: '5%',
-                  background: 'white',
-                  padding: '20px',
-                  boxSizing: 'border-box',
-                  pointerEvents: 'auto'
-                }}
+                onTouchStart={this.handleTouchStart}
+                onMouseDown={this.handleTouchStart}
+                onTouchEnd={this.handleTouchEnd}
+                onMouseUp={this.handleTouchEnd}
               >
-                <header
-                  style={{
-                    padding: '10px 20px',
-                    margin: '-20px -20px 0',
-                    background: '#000',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    position: 'relative'
-                    // width: '100%'
-                  }}
-                >
-                  <Link href="/">
+                <header>
+                  <Link href="/" scroll={false}>
                     <a onClick={e => this.handleClick(null, e)}>
-                      <button
-                        style={{
-                          background: 'transparent',
-                          border: 'none'
-                        }}
-                        aria-label="back"
-                      >
+                      <button aria-label="back">
                         <Arrow />
                       </button>
                     </a>
@@ -219,9 +186,9 @@ class CustomApp extends App {
 
                   <div
                     style={{
-                      textAlign: 'right',
-                      color: 'white',
-                      fontSize: '24px'
+                      textAlign: "right",
+                      color: "white",
+                      fontSize: "24px"
                     }}
                   >
                     UNDEFINED
@@ -233,7 +200,7 @@ class CustomApp extends App {
                 <Wrapper>
                   <Container>
                     {/* Page Data */}
-                    <Component />
+                    {this.state.drawerOpen && <Component />}
                     {/* End Page Data */}
                   </Container>
                 </Wrapper>
@@ -267,19 +234,18 @@ const StyledPage = styled.div`
 const Screen = styled.div`
   min-height: 100%;
   position: fixed;
-  transform: translateX(100%);
   top: 0;
   left: 0;
   width: 100%;
   opacity: 0;
   background: black;
-  transition: opacity 0.4s;
+  transition: opacity 0.6s;
   will-change: opacity;
+  z-index: -9999;
 
   ${props =>
     props.open &&
     `
-    transform: translateX(0%);
     opacity: 0.5;
     z-index: 1;
   `};
@@ -287,7 +253,6 @@ const Screen = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 90px;
   font-size: 1.125rem;
 
   h1 {

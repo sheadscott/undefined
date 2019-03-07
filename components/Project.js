@@ -1,27 +1,42 @@
 import styled from "styled-components";
 import Icon from "../static/button.svg";
 
-const Project = ({ project }) => (
-  <div>
-    <Section>
-      <Text>
-        <h1>{project.title}</h1>
-        <h2>{project.tagline}</h2>
-        <StyledIcon />
-      </Text>
-      {project.img && project.imgNoMarginRight ? (
-        <ImageContainer className="no-margin-right">
-          <Image src={"/static/projects/" + project.img} alt="" />
-        </ImageContainer>
-      ) : (
-        <ImageContainer>
-          <Image src={"/static/projects/" + project.img} alt="" />
-        </ImageContainer>
-      )}
-    </Section>
-    <HRule />
-  </div>
-);
+const Project = ({ project }) => {
+  const imageSizes = require(`../images/${project.img}?resize`);
+
+  return (
+    <div>
+      <Section>
+        <Text>
+          <h1>{project.title}</h1>
+          <h2>{project.tagline}</h2>
+          <StyledIcon />
+        </Text>
+        {}
+        {project.img && project.imgNoMarginRight ? (
+          <ImageContainer className="no-margin-right">
+            <Image
+              sizes="100vw"
+              srcSet={imageSizes.srcSet}
+              src={imageSizes.src}
+              alt=""
+            />
+          </ImageContainer>
+        ) : (
+          <ImageContainer>
+            <Image
+              sizes="100vw"
+              srcSet={imageSizes.srcSet}
+              src={imageSizes.src}
+              alt=""
+            />
+          </ImageContainer>
+        )}
+      </Section>
+      <HRule />
+    </div>
+  );
+};
 
 export default Project;
 
@@ -65,8 +80,8 @@ const Text = styled.div`
 const StyledIcon = styled(Icon)`
   width: 63px;
   position: absolute;
-  top: 0;
-  right: 2rem;
+  top: -0.2rem;
+  right: -1rem;
 
   @media (min-width: 415px) {
     width: 80px;

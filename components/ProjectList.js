@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Link from 'next/link';
-import Project from './Project';
-import siteData from '../projectListData.js';
+import React, { Component } from "react";
+import Link from "next/link";
+import Project from "./Project";
+import siteData from "../projectListData.js";
 
 class ProjectList extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -11,7 +11,7 @@ class ProjectList extends Component {
     return (
       <div>
         {siteData.map((project, index) => {
-          console.log('oh crap its a render!', Math.random());
+          // console.log('oh crap its a render!', Math.random());
           return (
             <Link key={index} href={project.url} scroll={false}>
               <a onClick={this.props.openDrawer}>

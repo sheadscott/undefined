@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import Link from 'next/link';
+import styled from "styled-components";
+import Link from "next/link";
 
-import Logo from '../static/logo.svg';
+import Logo from "../static/logo.svg";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -13,12 +13,9 @@ const StyledHeader = styled.header`
     margin: 0;
     padding: 0;
 
-    a svg {
+    svg {
       width: 120px;
     }
-  }
-  a {
-    display: block;
   }
 `;
 
@@ -32,15 +29,11 @@ const Nav = styled.nav`
 const Header = props => (
   <StyledHeader>
     <h1>
-      <Link href="/">
-        <a>
-          <Logo />
-        </a>
-      </Link>
+      <Logo />
     </h1>
     <Nav>
       <Link href="/contact">
-        <a onClick={props.openDrawer}>Contact</a>
+        <a onClick={e => props.handleClick(null, e)}>Contact</a>
       </Link>
     </Nav>
   </StyledHeader>
