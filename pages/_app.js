@@ -7,7 +7,7 @@ import Meta from "../components/Meta";
 import Header from "../components/Header";
 import ProjectList from "../components/ProjectList";
 import DrawerStyles from "../styles/DrawerStyles";
-import Arrow from "../static/arrow.svg";
+import Arrow from "../images/arrow.svg";
 import { white } from "ansi-colors";
 
 const theme = {

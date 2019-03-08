@@ -17,6 +17,7 @@ module.exports = withPlugins(
     [
       optimizedImages,
       {
+        handleImages: ["jpeg", "png"],
         optimizeImagesInDev: true,
         responsive: {
           adapter: require("responsive-loader/sharp"),

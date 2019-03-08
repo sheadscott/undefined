@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Icon from "../static/button.svg";
+import Icon from "../images/button.svg";
 
 const Project = ({ project }) => {
   const imageSizes = require(`../images/${project.img}?resize`);

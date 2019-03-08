@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-import Logo from "../static/logo.svg";
+import Logo from "../images/logo.svg";
 
 const StyledHeader = styled.header`
   display: flex;
