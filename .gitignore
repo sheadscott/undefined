@@ -59,6 +59,7 @@ typings/
 
 .cache/
 .next/
+bundles
 public
 out
 yarn-error.log

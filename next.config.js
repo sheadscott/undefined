@@ -7,6 +7,8 @@ const withMDX = require("@zeit/next-mdx")({
     mdPlugins: [images]
   }
 });
+const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
+// https://arunoda.me/blog/ssr-and-server-only-modules
 
 const nextConfig = {
   target: "serverless"
@@ -29,6 +31,25 @@ module.exports = withPlugins(
       withMDX,
       {
         pageExtensions: ["js", "jsx", "mdx"]
+      }
+    ],
+    [
+      withBundleAnalyzer,
+      {
+        analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
+        analyzeBrowser: ["browser", "both"].includes(
+          process.env.BUNDLE_ANALYZE
+        ),
+        bundleAnalyzerConfig: {
+          server: {
+            analyzerMode: "static",
+            reportFilename: "../bundles/server.html"
+          },
+          browser: {
+            analyzerMode: "static",
+            reportFilename: "../bundles/client.html"
+          }
+        }
       }
     ]
   ],
