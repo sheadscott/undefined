@@ -4,17 +4,24 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next -p 9999",
+    "dev": "next -p 7777",
     "build": "next build",
+    "create-sendgrid-secret": "now secret add sendgrid-api-key YOUR_API_KEY_HERE",
     "start": "next start",
     "export": "next export",
     "now-build": "next build",
-    "devdeploy": "yarn build && yarn export && aws s3 --region 'us-east-1' --profile undefinedis sync out/ s3://undefined.is --cache-control public,max-age=0 --delete"
+    "devdeploy": "yarn build && yarn export && aws s3 --region 'us-east-1' --profile undefinedis sync out/ s3://undefined.is --cache-control public,max-age=0 --delete",
+    "deploy": "now"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
     "@mdx-js/mdx": "^0.15.0",
+    "@sendgrid/mail": "^6.3.1",
     "@zeit/next-mdx": "1.2.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "dotenv-webpack": "^1.7.0",
+    "express": "^4.16.4",
     "html-react-parser": "0.6.2",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^6.0.0",
