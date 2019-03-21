@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "undefined-site",
+  "public": false,
   "env": {
     "SENDGRID_API": "@sendgrid-api-key"
   },

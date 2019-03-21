@@ -13,7 +13,6 @@
     "analyze:server": "BUNDLE_ANALYZE=server next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser next build",
     "now-build": "next build",
-    "devdeploy": "yarn build && yarn export && aws s3 --region 'us-east-1' --profile undefinedis sync out/ s3://undefined.is --cache-control public,max-age=0 --delete",
     "deploy": "now"
   },
   "dependencies": {
@@ -45,9 +44,7 @@
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "babel-plugin-inline-react-svg": "0.4.0"
   },
-  "peerDependencies": {
-    "preact": "^8.4.2"
-  },
+  "peerDependencies": {},
   "babel": {
     "presets": [
       "next/babel"
